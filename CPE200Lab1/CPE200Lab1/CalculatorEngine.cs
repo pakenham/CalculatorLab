@@ -9,6 +9,7 @@ namespace CPE200Lab1
     class CalculatorEngine
     {
         public CalculatorEngine() { } // construction
+       
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
@@ -46,5 +47,43 @@ namespace CPE200Lab1
             }
             return "E";
         }
+
+        public string percentage(bool hasOperate,string firstOperand,string textbox)
+        {
+            if (hasOperate == true)
+            {
+                double percentage = Convert.ToDouble(firstOperand) * (Convert.ToDouble(textbox) / 100);
+                return textbox = Convert.ToString(percentage);
+            }
+            else {return textbox = Convert.ToString(Convert.ToDouble(textbox) / 100); }
+        }
+
+        public string sqrt(string textbox)
+        {
+             return Convert.ToString(Math.Sqrt(Convert.ToDouble(textbox)));
+            
+        }
+
+        public string oneOx(string textbox)
+        {
+            return Convert.ToString(1 / Convert.ToDouble(textbox));
+        }
+
+        public double mPlus(string textbox,double memo)
+        {
+            return memo + Convert.ToDouble(textbox);
+        }
+
+        public double mMinus(string textbox, double memo)
+        {
+            return  memo - Convert.ToDouble(textbox);
+        }
+
+        public double MS(string textbox)
+        {
+            return Convert.ToDouble(textbox);
+        }
+
+
     }
 }

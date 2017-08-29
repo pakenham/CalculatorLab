@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CPE200Lab1
 {
     public partial class MainForm : Form
@@ -16,9 +17,10 @@ namespace CPE200Lab1
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
+        private bool hasOperate = false;
         private string firstOperand;
+        //private string secondOperand;
         private string operate;
-        private string operate2;
         private double memo;
 
 
@@ -31,7 +33,7 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
-            memo = 0;
+
         }
         public MainForm()
         {
@@ -90,14 +92,15 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-
             }
+            //if(hasOperate == true) { }
             isAllowBack = false;
-
+            hasOperate = true;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            //equalMethod();
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -114,6 +117,25 @@ namespace CPE200Lab1
             }
             isAfterEqual = true;
         }
+
+        /*private void equalMethod()
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string secondOperand = lblDisplay.Text;
+            string result = calculatorE.calculate(operate, firstOperand, secondOperand);
+            if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
+            isAfterEqual = true;
+        }*/
 
         private void btnDot_Click(object sender, EventArgs e)
         {
@@ -132,7 +154,7 @@ namespace CPE200Lab1
             if (!hasDot)
             {
                 lblDisplay.Text += ".";
-                hasDot = true;
+                //hasDot = true;
             }
         }
 
@@ -164,6 +186,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetAll();
+            memo = 0;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -198,48 +221,30 @@ namespace CPE200Lab1
 
         private void btnPercent_Click_1(object sender, EventArgs e)
         {
-            double percentage = Convert.ToDouble(firstOperand) * (Convert.ToDouble(lblDisplay.Text) / 100);
-            lblDisplay.Text = Convert.ToString(percentage);
-
+            lblDisplay.Text =  calculatorE.percentage(hasOperate, firstOperand, lblDisplay.Text);
         }
 
         private void btnSq_Click(object sender, EventArgs e)
         {
-            double x = Convert.ToDouble(lblDisplay.Text);
-            double xhi = x;
-            double xlo = 0;
-            double guess = x / 2;
-
-            while (guess * guess != x)
-            {
-                if (guess * guess > x) { xhi = guess; }
-                else { xlo = guess; }
-                double new_guess = (xhi + xlo) / 2;
-                if (new_guess == guess)
-                {
-                    break; // not getting closer }  
-                    guess = new_guess;
-                }
-                lblDisplay.Text = Convert.ToString(guess);
-            }
+            lblDisplay.Text = calculatorE.sqrt(lblDisplay.Text);
         }
 
         private void btn1Ox_Click(object sender, EventArgs e)
         {
-            double fraction = 1 / Convert.ToDouble(lblDisplay.Text);
-            lblDisplay.Text = Convert.ToString(fraction);
+
+            lblDisplay.Text = calculatorE.oneOx(lblDisplay.Text);
         }
 
         private void mPlus_Click(object sender, EventArgs e)
         {
-            double value = Convert.ToDouble(lblDisplay.Text);
-            memo += value;
+            memo = calculatorE.mPlus(lblDisplay.Text,memo);
+            lblDisplay.Text = " ";
         }
 
         private void mMinus_Click(object sender, EventArgs e)
         {
-            double value = Convert.ToDouble(lblDisplay.Text);
-            memo -= value;
+            memo = calculatorE.mMinus(lblDisplay.Text, memo);
+            lblDisplay.Text = " ";
         }
 
         private void MR_Click(object sender, EventArgs e)
@@ -260,7 +265,7 @@ namespace CPE200Lab1
 
         private void MS_Click(object sender, EventArgs e)
         {
-            memo = Convert.ToDouble(lblDisplay.Text);
+            memo = calculatorE.MS(lblDisplay.Text);
         }
     }
 }
