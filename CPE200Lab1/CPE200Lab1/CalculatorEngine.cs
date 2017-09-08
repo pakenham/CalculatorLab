@@ -127,7 +127,9 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
-             
+                case "%":
+                    double r = Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100);
+                    return r.ToString();
             }
             return "E";
         }

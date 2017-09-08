@@ -44,7 +44,16 @@ namespace CPE200Lab1
                         result = calculate(rpnOperate, firstRpnOperand, secondRpnOperand, 4);
                         rpnStack.Push(result);
                     }
-                    else if(input == "1/x" || input == "√" || input == "%")
+                    if(input == "%")
+                    {
+                        string rpnOperate = input;
+                        string secondRpnOperand = rpnStack.Pop().ToString();
+                        string firstRpnOperand = rpnStack.Pop().ToString();
+                        result = calculate(rpnOperate, firstRpnOperand, secondRpnOperand, 4);
+                        rpnStack.Push(firstRpnOperand);
+                        rpnStack.Push(result);
+                    }
+                    else if(input == "1/x" || input == "√" )
                     {
                         string rpnOperate = input;
                         string rpnOperand = rpnStack.Pop().ToString();                    
