@@ -165,12 +165,12 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
-            {
+            //if(!isContainDot)
+            //{
                 isContainDot = true;
                 lblDisplay.Text += ".";
                 isSpaceAllowed = false;
-            }
+            //}
         }
 
         private void btnSpace_Click(object sender, EventArgs e)
