@@ -9,16 +9,7 @@ namespace CPE200Lab1
 {
     class RpnCalculatorEngine : CalculatorEngine
     {
-        /*public void testStack()
-        {
-            // creat and initializes a new stack
-            Stack myStack = new Stack();
-            myStack.Push("Hello");
-            myStack.Push("World");
-            System.Console.Out.WriteLine("Pop 1" + myStack.Pop());
-            System.Console.Out.WriteLine("Pop 2" + myStack.Pop());
-            System.Console.Out.WriteLine("Pop 3" + myStack.Pop());
-        }*/
+        
 
         public string RpnProcess(string stringInput)
         {
@@ -27,7 +18,7 @@ namespace CPE200Lab1
             Stack rpnStack = new Stack();
 
             foreach(string input in parts) // แต่ละ element ของ parts ให้เอามาเป็น input
-            //for(int i = 0; i < parts.Length; i++)
+            //for(int i = 0; i < parts.Length; i++) 
             {
                 //string input = parts[i]; // = each part one by one
                 if (isNumber(input))

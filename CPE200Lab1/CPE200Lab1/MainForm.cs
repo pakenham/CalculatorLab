@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private double memory;
-        private CalculatorEngine engine;
+        private CalculatorEngine engine;  
 
         private void resetAll()
         {
