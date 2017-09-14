@@ -24,6 +24,14 @@ namespace CPE200Lab1
                 {
                     rpnStack.Push(token);
                 }
+                else if (token == "%")
+                {
+                    secondOperand = rpnStack.Pop();
+                    firstOperand = rpnStack.Pop();
+                    result = calculate(token, firstOperand, secondOperand, 4);
+                    rpnStack.Push(firstOperand);
+                    rpnStack.Push(result);
+                }
                 else if (isOperator(token))
                 {
                     //FIXME, what if there is only one left in stack?
@@ -41,8 +49,14 @@ namespace CPE200Lab1
                     catch
                     {
                         return "E";
-                    }
-                    
+                    }                 
+                }
+                else if (token == "1/X" || token == "√")
+                {
+                    firstOperand = rpnStack.Pop();
+                    result = unaryCalculate(token, firstOperand, 8);
+                    rpnStack.Push(result);
+                   
                 }
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
