@@ -10,10 +10,13 @@ namespace CPE200Lab1
     {
         public new string Process(string str)
         {
+          
             Stack<string> rpnStack = new Stack<string>();
             List<string> parts = str.Split(' ').ToList<string>();
             string result;
             string firstOperand, secondOperand;
+
+           // if(parts.Count() == 1) { return "E"; }
 
             foreach (string token in parts)
             {
@@ -37,7 +40,7 @@ namespace CPE200Lab1
                     }
                     catch
                     {
-                        return "Check your operand.";
+                        return "E";
                     }
                     
                 }
