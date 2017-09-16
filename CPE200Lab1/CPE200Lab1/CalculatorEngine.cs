@@ -22,23 +22,27 @@ namespace CPE200Lab1
                 case "X":
                 case "÷":
                     return true;
+                default: return false;break;
             }
-            return false;
+            
         }
 
         public string Process(string str)
         {
             //Split input string to multiple parts by space
-            List<string> parts = str.Split(' ').ToList<string>();
+            
+            List<string> parts = str.Split(' ').ToList<string>(); 
+            
             string result;
             //As long as we have more than one part
             while(parts.Count > 1)
             {
                 //Check if the first three is ready for calcuation
-                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                if (!(isNumber(parts[0]) && isOperator(parts[2]) && isNumber(parts[1]))) 
                 {
                     return "E";
-                } else
+                } 
+                else
                 {
                     //Calculate the first three
                     result = calculate(parts[1], parts[0], parts[2], 4);
@@ -47,6 +51,8 @@ namespace CPE200Lab1
                     // Put back the result
                     parts.Insert(0, result);
                 }
+
+                
             }
             return parts[0];
         }
@@ -63,7 +69,7 @@ namespace CPE200Lab1
                         {
                             result = Math.Sqrt(Convert.ToDouble(operand));
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             return "E";
                         }
@@ -123,19 +129,29 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
-
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if (parts[0].Length > maxOutputSize)
+                        if(Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) == 0)
                         {
-                            return "E";
+                            return result.ToString();
+                            //return Convert.ToString(Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         }
+                        //else
+                        //{
+
+                        // split between integer part and fractional part
+                        /*parts = result.ToString().Split('.');
+                          // if integer part length is already break max output, return error
+                          if (parts[0].Length > maxOutputSize)
+                          {
+                              return "E";
+                          }*/
                         // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
+                        //remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        result = Math.Round(result, 4);
+                        return Convert.ToString(result);//N" + remainLength);
+                        //}
+                        
                     }
                     break;
                 case "%":

@@ -31,8 +31,8 @@ namespace CPE200Lab1
                 case 'X':
                 case '÷':
                     return true;
+                default: return false; break;
             }
-            return false;
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -64,8 +64,8 @@ namespace CPE200Lab1
             isContainDot = false;
             string current = lblDisplay.Text;
             
-            lblDisplay.Text += " " + ((Button)sender).Text + " ";
-            isSpaceAllowed = false;
+            lblDisplay.Text += ((Button)sender).Text ;
+            isSpaceAllowed = true;
             
         }
 
@@ -182,5 +182,7 @@ namespace CPE200Lab1
             isSpaceAllowed = false;
             
         }
+
+       
     }
 }

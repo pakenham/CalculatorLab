@@ -29,8 +29,8 @@ namespace CPE200Lab1.Tests
         [TestMethod()]
         public void EmptyArgumentTest()
         {
-            Assert.AreEqual("E", engine.Process(null));
-            Assert.AreEqual("E", engine.Process(""));
+            Assert.AreEqual("E", engine.Process(null)); // what we want program to do
+            Assert.AreEqual("E", engine.Process("")); // what the program actually do
         }
 
         [TestMethod()]
@@ -50,7 +50,7 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("10", engine.Process("5 5 + "));
             Assert.AreEqual("10", engine.Process("20 10 - "));
             Assert.AreEqual("10", engine.Process("5 2 X "));
-            Assert.AreEqual("10", engine.Process("10 1 ÷"));
+            Assert.AreEqual("10", engine.Process("10 1 ÷")); // this one
         }
 
         [TestMethod()]
@@ -78,7 +78,7 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("0.5", engine.Process("1 2 ÷"));
             Assert.AreEqual("0.3333", engine.Process("1 3 ÷"));
             Assert.AreEqual("0.25", engine.Process("1 4 ÷"));
-            Assert.AreEqual("0.1667", engine.Process("1 6 ÷"));
+            Assert.AreEqual("0.1667", engine.Process("1 6 ÷"));// ปัดทศนิยม
             Assert.AreEqual("0.125", engine.Process("1 8 ÷"));
         }
 
@@ -98,6 +98,7 @@ namespace CPE200Lab1.Tests
         [TestMethod()]
         public void DividedByZeroTest()
         {
+           // Assert.AreEqual(engine.Process("0 0 ÷ "),"E" ); able to swap the parametors
             Assert.AreEqual("E", engine.Process("0 0 ÷ "));
             Assert.AreEqual("E", engine.Process("1 0 ÷ "));
             Assert.AreEqual("E", engine.Process("1 2 2 - ÷ "));
