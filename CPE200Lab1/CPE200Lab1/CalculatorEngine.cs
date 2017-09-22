@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        protected bool isNumber(string str)
+        protected bool isNumber(string str) // protected = คลาสที่สืบทดก็ใช้ได้
         {
             double retNum;
             return Double.TryParse(str, out retNum);
@@ -22,15 +22,18 @@ namespace CPE200Lab1
                 case "X":
                 case "÷":
                     return true;
-                default: return false;break;
+                default: return false;
+                    break;
             }
             
         }
 
         public string Process(string str)
         {
+
+            if (str == "0") { return "0"; }
+            else if (str == null) { return "E"; }
             //Split input string to multiple parts by space
-            
             List<string> parts = str.Split(' ').ToList<string>(); 
             
             string result;
@@ -45,7 +48,7 @@ namespace CPE200Lab1
                 else
                 {
                     //Calculate the first three
-                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    result = calculate(parts[1], parts[0], parts[2]);
                     //Remove the first three
                     parts.RemoveRange(0, 3);
                     // Put back the result
@@ -56,7 +59,7 @@ namespace CPE200Lab1
             }
             return parts[0];
         }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -112,7 +115,7 @@ namespace CPE200Lab1
             return "E";
         }
 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate, string firstOperand, string secondOperand)
         {
             switch (operate)
             {
@@ -127,8 +130,8 @@ namespace CPE200Lab1
                     if (secondOperand != "0")
                     {
                         double result;
-                        string[] parts;
-                        int remainLength;
+                        //string[] parts;
+                        //int remainLength;
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         if(Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) == 0)
                         {
